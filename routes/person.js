@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-
-const  PersonService = require('../services/person-service')
+const PersonService = require('../services/person-service')
+const TodoService = require('../services/todo-service')
 
 
 router.get('/all', async (req, res) => {
@@ -12,6 +12,15 @@ router.get('/all', async (req, res) => {
 router.get('/:id', async(req, res) => {
   const person = await PersonService.find(req.params.id)
   res.render('data', {data: person})
+})
+
+
+router.post('/:id/todos', async(req, res) => {
+  const person = await PersonService.find(req.params.id)
+  const todo = await TodoService.add(req.body.todo)
+  await PersonService.PersonalTodoAdd(person, todo)
+  res.send(person)
+  console.log('okey!')
 })
 
 router.post('/', async(req, res) => {
@@ -25,7 +34,6 @@ router.delete('/:id', async(req, res) =>{
   res.send(deletedPerson)
   console.log('Person has been deleted!')
 })
-
 
   
 module.exports = router
