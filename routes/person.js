@@ -6,7 +6,8 @@ const TodoService = require('../services/todo-service')
 
 router.get('/all', async (req, res) => {
   const people = await PersonService.findAll()
-  res.render('list', { items: people })
+  //res.render('list', { items: people })
+  res.send(people)
 })
 
 router.get('/:id', async(req, res) => {
@@ -25,7 +26,7 @@ router.post('/:id/todos', async(req, res) => {
 
 router.post('/', async(req, res) => {
   const addedPerson = await PersonService.add(req.body)
-  res.render(addedPerson)
+  res.send(addedPerson)
   console.log('Person has been added!')
 })
 

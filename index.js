@@ -1,12 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-
+const cors = require('cors')
 const personRouter = require('./routes/person')
 const todoRouter = require('./routes/todo')
 
 require('./mongo-connection')
 
 const app = express()
+app.use(cors())
 
 app.set('view engine', 'pug')
 app.use(bodyParser.json())
