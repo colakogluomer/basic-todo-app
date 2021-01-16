@@ -22,10 +22,38 @@ export default {
 
 
 <template lang="pug">
-  main
-
-    button(@click="addPerson" ) Increment 
-    div {{ counter }}
-
-    person-card(v-for="person in people", v-bind:key="person.id", :person="person") 
+  main  
+    section
+      person-card(v-for="person in people", v-bind:key="person.id", :person="person")
+    section
+      button.increment-button(@click="addPerson" ) Increment 
+      div {{ counter }}
 </template>
+
+<style scoped>
+
+section {
+  padding: 40x 0;
+  
+}
+
+.increment-button{
+  color: darkcyan;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: white;
+  border: 5px solid darkcyan;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 20px; 
+}
+
+.increment-button:hover {
+  background-color: darkcyan;
+  color: red;
+}
+
+</style>
+
+

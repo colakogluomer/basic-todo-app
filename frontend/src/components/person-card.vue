@@ -6,11 +6,22 @@ export default {
 </script>
 
 <template lang="pug">
-div.name {{ person.name }} {{person.surname}}
+article.card 
+    img(:src="`https://picsum.photos/300/200?random=${person._id}`", alt=" photo has not been installed ")
+    h2.card-title {{ person.name}} 
+    p {{person.surname}} {{person.age}} 
 </template>
 
 <style scoped>
-    .name{
-        color: red;
+    .card {
+        display: inline-block;
+        text-align: left;
+        padding: 20px;
+        border: 1px solid rgb(110, 33, 33);
+        border-radius: 30px;
+        margin: 20px;
+        min-width: 200px;
+        
     }
+    
 </style>
