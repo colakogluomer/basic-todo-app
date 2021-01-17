@@ -7,7 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     counter: 0,
-    people: []
+    people: [],
+    person: {}
   },
   mutations: {
     SET_COUNTER(state, newCount) {
@@ -15,6 +16,9 @@ export default new Vuex.Store({
     },
     SET_PEOPLE(state, data) {
       state.people = data
+    },
+    SET_PERSON(state, data) {
+      state.person = data
     },
   },
   actions: {
@@ -30,6 +34,10 @@ export default new Vuex.Store({
       await axios.post('http://localhost:3001/person', { name: 'ayse', surname: 'mehmet', age: '28'});
       const newCount = state.counter +1
       commit('SET_COUNTER', newCount)
+    },
+    async fetchPerson({ commit }, id) {
+      const result = await axios.get(`http://localhost:3001/person/${id}`)
+      commit('SET_PERSON', result.data)
     }
   },
 
