@@ -12,7 +12,8 @@ router.get('/all', async (req, res) => {
 
 router.get('/:id', async(req, res) => {
   const person = await PersonService.find(req.params.id)
-  res.render('data', {data: person})
+  
+  res.send(person)
 })
 
 
